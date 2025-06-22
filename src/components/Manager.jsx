@@ -1,4 +1,4 @@
-import React, { useRef, useState,useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 const Manager = () => {
   const inpref = useRef()
@@ -8,12 +8,12 @@ const Manager = () => {
   const [passwordArray, setPasswordArray] = useState([])
 
   useEffect(() => {
-    let passwords=localStorage.getItem("passwords")
-    if(passwords){
+    let passwords = localStorage.getItem("passwords")
+    if (passwords) {
       setPasswordArray(JSON.parse(passwords))
     }
   }, [])
-  
+
 
   const showPassword = () => {
     if (inpref.current.type === "password") {
@@ -27,7 +27,7 @@ const Manager = () => {
 
   const savePassword = () => {
     setPasswordArray([...passwordArray, form])
-    localStorage.setItem("passwords",JSON.stringify([...passwordArray, form]))
+    localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]))
     console.log([...passwordArray, form])
   }
 
@@ -101,6 +101,30 @@ const Manager = () => {
             colors="primary:#ffffff,secondary:#66a1ee"
           ></lord-icon>Add Password</button>
       </div>
+      <div className="passwords w-full max-w-4xl mx-auto mt-10">
+        <h2 className="text-2xl font-bold text-center text-blue-900 mb-4">Your Passwords</h2>
+        {passwordArray.length==0 && <div>No passwords have been entered</div>}
+        {passwordArray.length!=0 && <table className="w-full border-collapse rounded overflow-hidden shadow-md">
+          <thead className="bg-blue-900 text-white">
+            <tr>
+              <th className="py-3 px-4 text-left border border-blue-200">Website URL</th>
+              <th className="py-3 px-4 text-left border border-blue-200">Username</th>
+              <th className="py-3 px-4 text-left border border-blue-200">Password</th>
+            </tr>
+          </thead>
+          <tbody className="bg-blue-400 text-white">
+            {passwordArray.map((item,index)=>{
+              return <tr key={index} className="border border-blue-200">
+              <td className="py-2 px-4 border border-blue-200"><a target="_blank"href={item.site}>{item.site}</a></td>
+              <td className="py-2 px-4 border border-blue-200">{item.username}</td>
+              <td className="py-2 px-4 border border-blue-200">{item.password}</td>
+            </tr>
+            })}
+            
+          </tbody>
+        </table>}
+      </div>
+
     </div>
   )
 }
