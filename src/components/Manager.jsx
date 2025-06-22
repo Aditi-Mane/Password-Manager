@@ -1,10 +1,19 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 
 const Manager = () => {
   const inpref = useRef()
   const imgref = useRef()
 
   const [form, setForm] = useState({ site: "", username: "", password: "" })
+  const [passwordArray, setPasswordArray] = useState([])
+
+  useEffect(() => {
+    let passwords=localStorage.getItem("passwords")
+    if(passwords){
+      setPasswordArray(JSON.parse(passwords))
+    }
+  }, [])
+  
 
   const showPassword = () => {
     if (inpref.current.type === "password") {
@@ -17,7 +26,9 @@ const Manager = () => {
   }
 
   const savePassword = () => {
-    console.log(form)
+    setPasswordArray([...passwordArray, form])
+    localStorage.setItem("passwords",JSON.stringify([...passwordArray, form]))
+    console.log([...passwordArray, form])
   }
 
   const useHandler = (e) => {
@@ -83,7 +94,7 @@ const Manager = () => {
           </div>
 
         </div>
-        <button onClick={savePassword} className='mx-auto flex gap-2 justify-center items-center border border-blue-400 bg-blue-900 text-white px-4 py-1 rounded-[20px] w-fit'>
+        <button onClick={savePassword} className='hover:bg-blue-800 mx-auto flex gap-2 justify-center items-center border border-blue-400 bg-blue-900 text-white px-4 py-1 rounded-[20px] w-fit'>
           <lord-icon
             src="https://cdn.lordicon.com/navborva.json"
             trigger="hover"
