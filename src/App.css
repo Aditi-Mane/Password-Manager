@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.common-btn{
+  @apply border border-blue-400 rounded-2xl pl-2 py-1 bg-white;
+}
