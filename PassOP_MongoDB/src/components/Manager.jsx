@@ -130,7 +130,7 @@ const Manager = () => {
               <img
                 ref={imgref}
                 src="icons/noteye.svg"
-                className="absolute right-3 top-2.5 w-5 h-5 cursor-pointer"
+                className="absolute right-2 top-1.5 w-5 h-5 cursor-pointer"
                 alt="Show Password"
                 onClick={showPassword}
               />
