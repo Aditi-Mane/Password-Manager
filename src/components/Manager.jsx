@@ -14,6 +14,11 @@ const Manager = () => {
     }
   }, [])
 
+  const copyText=(text)=>{
+    alert (text + " has been copied to clipboard")
+    navigator.clipboard.writeText(text)
+  }
+
 
   const showPassword = () => {
     if (inpref.current.type === "password") {
@@ -102,7 +107,7 @@ const Manager = () => {
       </div>
       <div className="passwords w-full max-w-4xl mx-auto mt-10">
         <h2 className="text-2xl font-bold text-center text-blue-900 mb-4">Your Passwords</h2>
-        {passwordArray.length == 0 && <div>No passwords have been entered</div>}
+        {passwordArray.length == 0 && <div className='text-center'>No passwords have been entered</div>}
         {passwordArray.length != 0 && <table className="w-full border-collapse rounded overflow-hidden shadow-md">
           <thead className="bg-blue-900 text-white">
             <tr>
@@ -114,10 +119,26 @@ const Manager = () => {
           <tbody className="bg-blue-400 text-white">
             {passwordArray.map((item, index) => {
               return <tr key={index} className="border border-blue-200">
-                <td className="py-2 px-4 border border-blue-200"><a target="_blank" href={item.site}>{item.site}</a></td>
-                <td className="py-2 px-4 border border-blue-200">{item.username}</td>
-                <td className="py-2 px-4 border border-blue-200">{item.password}</td>
+                <td className="py-2 px-4 border border-blue-200">
+                  <div className="flex items-center gap-1">
+                    <a target="_blank" href={item.site} className="truncate">{item.site}</a>
+                    <img onClick={()=>{copyText(item.site)}} className="copy-effects" src="icons/copy.svg" alt="copy button" />
+                  </div>
+                </td>
+                <td className="py-2 px-4 border border-blue-200">
+                  <div className="flex items-center gap-1">
+                    <span>{item.username}</span>
+                    <img onClick={()=>{copyText(item.username)}} className="copy-effects" src="icons/copy.svg" alt="copy button" />
+                  </div>
+                </td>
+                <td className="py-2 px-4 border border-blue-200">
+                  <div className="flex items-center gap-1">
+                    <span>{item.password}</span>
+                    <img onClick={()=>{copyText(item.password)}} className="copy-effects" src="icons/copy.svg" alt="copy button" />
+                  </div>
+                </td>
               </tr>
+
             })}
 
           </tbody>
