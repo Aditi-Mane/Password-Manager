@@ -41,12 +41,12 @@ const Manager = () => {
   }
 
   return (
-    <div>
+    <div className='pb-24 pt-14'>
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"></div></div>
 
       <div className='heading flex flex-col justify-center items-center'>
         <div className="font-bold logo text-blue-900 text-3xl pt-10 text-center">
-          <span className='text-blue-400'>&lt;</span><b>Pass</b><span className='text-blue-400'>OP/&gt;</span>
+          <span className='text-blue-500'>&lt;</span><b>Pass</b><span className='text-blue-500'>OP/&gt;</span>
           <div className='text-gray-500 text-[15px]'>Your own Password Manager</div>
         </div>
       </div>
@@ -62,24 +62,23 @@ const Manager = () => {
           required
         />
 
-        <div className="flex gap-4 w-full">
+        <div className="flex flex-col lg:flex-row gap-3 w-full">
           <input
             value={form.username}
             name="username"
             onChange={useHandler}
-            className="common-btn w-3/4"
+            className="common-btn w-full lg:w-3/4"
             placeholder="Enter Username"
-
             type="text"
             required
           />
-          <div className="relative w-1/4">
+          <div className="relative w-full lg:w-1/4">
             <input
               ref={inpref}
               value={form.password}
               name="password"
               onChange={useHandler}
-              className="common-btn w-full pr-10"
+              className="common-btn w-full pr-7"
               placeholder="Enter Password"
               type="password"
               required
@@ -87,7 +86,7 @@ const Manager = () => {
             <img
               ref={imgref}
               src="icons/noteye.svg"
-              className="absolute right-3 top-[6px] w-5 h-5 cursor-pointer"
+              className="absolute right-3 top-[6px] w-5 h-5 cursor-pointer bg-transparent"
               alt="Show Password"
               onClick={showPassword}
             />
@@ -103,8 +102,8 @@ const Manager = () => {
       </div>
       <div className="passwords w-full max-w-4xl mx-auto mt-10">
         <h2 className="text-2xl font-bold text-center text-blue-900 mb-4">Your Passwords</h2>
-        {passwordArray.length==0 && <div>No passwords have been entered</div>}
-        {passwordArray.length!=0 && <table className="w-full border-collapse rounded overflow-hidden shadow-md">
+        {passwordArray.length == 0 && <div>No passwords have been entered</div>}
+        {passwordArray.length != 0 && <table className="w-full border-collapse rounded overflow-hidden shadow-md">
           <thead className="bg-blue-900 text-white">
             <tr>
               <th className="py-3 px-4 text-left border border-blue-200">Website URL</th>
@@ -113,14 +112,14 @@ const Manager = () => {
             </tr>
           </thead>
           <tbody className="bg-blue-400 text-white">
-            {passwordArray.map((item,index)=>{
+            {passwordArray.map((item, index) => {
               return <tr key={index} className="border border-blue-200">
-              <td className="py-2 px-4 border border-blue-200"><a target="_blank"href={item.site}>{item.site}</a></td>
-              <td className="py-2 px-4 border border-blue-200">{item.username}</td>
-              <td className="py-2 px-4 border border-blue-200">{item.password}</td>
-            </tr>
+                <td className="py-2 px-4 border border-blue-200"><a target="_blank" href={item.site}>{item.site}</a></td>
+                <td className="py-2 px-4 border border-blue-200">{item.username}</td>
+                <td className="py-2 px-4 border border-blue-200">{item.password}</td>
+              </tr>
             })}
-            
+
           </tbody>
         </table>}
       </div>
