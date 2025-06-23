@@ -8,7 +8,7 @@ const Navbar = () => {
       </div>
       
       <a target="_blank" href="https://github.com/Aditi-Mane/Password-Manager.git">
-        <button className='cursor-pointer hover:bg-blue-400 flex gap-1 border border-blue-800 bg-blue-500 justify-center items-center pr-2 p-1 rounded-[25px]'>
+        <button className='ring ring-white cursor-pointer hover:bg-blue-400 flex gap-1 border border-blue-800 bg-blue-500 justify-center items-center pr-2 p-1 rounded-[25px]'>
           <img className="w-7"src="/icons/github.svg"alt="github icon"></img>
           <span className='text-white'><b>Github</b></span>
         </button>
